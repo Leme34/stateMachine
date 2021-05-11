@@ -1,0 +1,74 @@
+### Maven ###
+target/
+logs/
+
+### Maven release plugin ###
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# gradle
+.gradle/
+build/
+local.properties
+gradle.properties
+
+### Java ###
+## Compiled class file
+*.class
+
+### Log file ###
+*.log
+*.log.*
+
+### Package files ###
+*.jar
+
+### Eclipse ###
+.metadata/
+.settings/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+.project
+.classpath
+.loadpath
+
+### External tool builders ###
+.externalToolBuilders/
+
+### Locally stored "Eclipse launch configurations" ###
+*.launch
+
+### STS ###
+.apt_generated
+.factorypath
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+.DS_Store
+node_modules
+
+### VS Code ###
+.vscode/
