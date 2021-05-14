@@ -1,8 +1,10 @@
 package com.lsd.stateMachine.processor;
 
 import com.lsd.stateMachine.checker.Checkable;
+import com.lsd.stateMachine.context.CreateOrderContext;
 import com.lsd.stateMachine.context.StateContext;
 import com.lsd.stateMachine.enums.OrderStateEnum;
+import com.lsd.stateMachine.plugin.PluginHandlerable;
 import com.lsd.stateMachine.vo.ServiceResult;
 
 /**
@@ -20,7 +22,15 @@ public interface StateActionStep<T, C> {
      */
     ServiceResult<T, C> check(StateContext<C> context);
 
+    /**
+     * 处理器的校验责任链
+     */
     Checkable getCheckable(StateContext<C> context);
+
+    /**
+     * 处理器的插件责任链
+     */
+    PluginHandlerable getPluginHandlerable(StateContext<C> context);
 
     /**
      * 获取当前状态处理器处理完毕后，所处于的下一个状态，这里把下一个状态的判定交由业务逻辑根据上下文对象自己来判断。

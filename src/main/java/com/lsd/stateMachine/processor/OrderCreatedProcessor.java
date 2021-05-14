@@ -1,15 +1,18 @@
 package com.lsd.stateMachine.processor;
 
-import com.lsd.stateMachine.enums.ServiceType;
-import com.lsd.stateMachine.vo.ServiceResult;
 import com.lsd.stateMachine.annotation.processor.OrderProcessor;
 import com.lsd.stateMachine.checker.*;
 import com.lsd.stateMachine.context.CreateOrderContext;
 import com.lsd.stateMachine.context.StateContext;
-import com.lsd.stateMachine.event.CreateEvent;
 import com.lsd.stateMachine.enums.OrderEventEnum;
 import com.lsd.stateMachine.enums.OrderStateEnum;
+import com.lsd.stateMachine.enums.ServiceType;
+import com.lsd.stateMachine.event.CreateEvent;
+import com.lsd.stateMachine.plugin.PluginHandlerable;
+import com.lsd.stateMachine.plugin.handler.EstimatePricePluginHandler;
+import com.lsd.stateMachine.plugin.handler.PluginHandler;
 import com.lsd.stateMachine.pojo.OrderInfo;
+import com.lsd.stateMachine.vo.ServiceResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +32,12 @@ public class OrderCreatedProcessor extends AbstractStateProcessor<String, Create
     private UserChecker userChecker;
     @Resource
     private UnfinshChecker unfinshChecker;
+    @Resource
+    private EstimatePricePluginHandler estimatePricePluginHandler;
 
+    /**
+     * 订单创建处理器的校验责任链
+     */
     @Override
     public Checkable getCheckable(StateContext<CreateOrderContext> context) {
         return new Checkable() {
@@ -104,4 +112,18 @@ public class OrderCreatedProcessor extends AbstractStateProcessor<String, Create
         return false;
     }
 
+    @Override
+    public PluginHandlerable getPluginHandlerable(StateContext<CreateOrderContext> context) {
+        return new PluginHandlerable() {
+            @Override
+            public List<PluginHandler> getSyncPluginHandler() {
+                return Arrays.asList(estimatePricePluginHandler);
+            }
+
+            @Override
+            public List<PluginHandler> getAsyncPluginHandler() {
+                return Arrays.asList(estimatePricePluginHandler);
+            }
+        };
+    }
 }

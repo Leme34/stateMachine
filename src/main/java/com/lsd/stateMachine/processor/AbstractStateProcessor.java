@@ -5,7 +5,6 @@ import com.lsd.stateMachine.checker.CheckerExecutor;
 import com.lsd.stateMachine.context.StateContext;
 import com.lsd.stateMachine.plugin.PluginHandlerExecutor;
 import com.lsd.stateMachine.plugin.PluginHandlerable;
-import com.lsd.stateMachine.plugin.handler.PluginHandler;
 import com.lsd.stateMachine.vo.ServiceResult;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +14,7 @@ import javax.annotation.Resource;
  * 状态机处理器模板类
  */
 @Component
-public abstract class AbstractStateProcessor<T, C> implements StateProcessor<T, C>, StateActionStep<T, C>, PluginHandler<T, C> {
+public abstract class AbstractStateProcessor<T, C> implements StateProcessor<T, C>, StateActionStep<T, C>{
 
     @Resource
     private CheckerExecutor<T, C> checkerExecutor;

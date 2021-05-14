@@ -25,20 +25,6 @@ import java.util.List;
 @Component
 public class EstimatePricePluginHandler implements PluginHandler<String, CreateOrderContext> {
 
-    @Autowired
-    private ApplicationContext applicationContext;
-
-    @Override
-    public PluginHandlerable getPluginHandlerable(StateContext<CreateOrderContext> context) {
-        return new PluginHandlerable() {
-            @Override
-            public List<PluginHandler> getSyncPluginHandler() {
-                EstimatePricePluginHandler estimatePricePluginHandler = (EstimatePricePluginHandler) applicationContext.getBean("estimatePricePluginHandler");
-                return Collections.singletonList(estimatePricePluginHandler);
-            }
-        };
-    }
-
     @Override
     public ServiceResult action(StateContext<CreateOrderContext> context) throws Exception {
 //        String price = priceSerive.getPrice();

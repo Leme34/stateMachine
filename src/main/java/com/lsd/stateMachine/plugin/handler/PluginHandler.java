@@ -11,8 +11,6 @@ import com.lsd.stateMachine.vo.ServiceResult;
  */
 public interface PluginHandler<T, C> extends StateProcessor<T, C> {
 
-    PluginHandlerable getPluginHandlerable(StateContext<C> context);
-
     /**
      * 多个 pluginHandler 时的执行顺序
      */

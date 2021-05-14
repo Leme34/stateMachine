@@ -1,6 +1,7 @@
 package com.lsd.stateMachine.processor;
 
 import com.lsd.stateMachine.enums.OrderStateEnum;
+import com.lsd.stateMachine.plugin.PluginHandlerable;
 import com.lsd.stateMachine.vo.ServiceResult;
 import com.lsd.stateMachine.annotation.processor.OrderProcessor;
 import com.lsd.stateMachine.checker.Checkable;
@@ -54,5 +55,10 @@ public class StateCreateProcessor extends AbstractStateProcessor<String, CreateO
     @Override
     public boolean filter(StateContext<CreateOrderContext> context) {
         return false;
+    }
+
+    @Override
+    public PluginHandlerable getPluginHandlerable(StateContext<CreateOrderContext> context) {
+        return null;
     }
 }
