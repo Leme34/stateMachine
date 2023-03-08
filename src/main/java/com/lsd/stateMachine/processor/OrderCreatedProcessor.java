@@ -66,10 +66,17 @@ public class OrderCreatedProcessor extends AbstractStateProcessor<String, Create
     @Override
     public ServiceResult<String, CreateOrderContext> action(String nextState, StateContext<CreateOrderContext> context) throws Exception {
         CreateEvent createEvent = (CreateEvent) context.getOrderStateEvent();
+
         // 促销信息信息
         String promtionInfo = this.doPromotion();
+
         // 订单创建业务处理逻辑...
-        return null;
+
+        ServiceResult<String, CreateOrderContext> result = new ServiceResult<>();
+        result.setContext(context.getContext());
+        result.setMsg("success");
+        result.setSuccess(true);
+        return result;
     }
 
     /**
@@ -89,13 +96,13 @@ public class OrderCreatedProcessor extends AbstractStateProcessor<String, Create
 
     @Override
     public ServiceResult<String, CreateOrderContext> save(String nextState, StateContext<CreateOrderContext> context) throws Exception {
-        OrderInfo orderInfo = (OrderInfo) context.getContext().getOrderInfo();
+        OrderInfo orderInfo = (OrderInfo) context.getFsmOrder();
         // 更新状态
         orderInfo.setOrderState(nextState);
         // 持久化
 //        this.updateOrderInfo(orderInfo);
         log.info("save BUSINESS order success, userId:{}, orderId:{}", orderInfo.getUserId(), orderInfo.getOrderId());
-        return new ServiceResult<>(orderInfo.getOrderId(), "business下单成功");
+        return new ServiceResult<>(orderInfo.getOrderId(), context.getContext(), "business下单成功", true);
     }
 
     @Override
@@ -106,6 +113,7 @@ public class OrderCreatedProcessor extends AbstractStateProcessor<String, Create
     @Override
     public boolean filter(StateContext<CreateOrderContext> context) {
         OrderInfo orderInfo = (OrderInfo) context.getFsmOrder();
+        context.setContext(new CreateOrderContext<>("estimatePriceInfo"));
         if (orderInfo.getServiceType() == ServiceType.TAKEOFF_CAR) {
             return true;
         }

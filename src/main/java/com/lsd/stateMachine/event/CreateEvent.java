@@ -1,5 +1,9 @@
 package com.lsd.stateMachine.event;
 
+import com.lsd.stateMachine.enums.OrderEventEnum;
+
+import java.util.UUID;
+
 /**
  * Created by lsd
  * 2021-05-11 10:13
@@ -7,16 +11,16 @@ package com.lsd.stateMachine.event;
 public class CreateEvent implements OrderStateEvent{
     @Override
     public String getEventType() {
-        return null;
+        return OrderEventEnum.CREATE.toString();
     }
 
     @Override
     public String getOrderId() {
-        return null;
+        return UUID.randomUUID().toString();
     }
 
     @Override
     public boolean newCreate() {
-        return false;
+        return true;
     }
 }

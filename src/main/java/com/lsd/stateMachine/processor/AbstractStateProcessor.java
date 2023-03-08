@@ -48,10 +48,10 @@ public abstract class AbstractStateProcessor<T, C> implements StateProcessor<T, 
                 return result;
             }
             // 并行校验器
-            result = checkerExecutor.parallelCheck(checkable.getAsyncChecker(), context);
-            if (!result.isSuccess()) {
-                return result;
-            }
+            //result = checkerExecutor.parallelCheck(checkable.getAsyncChecker(), context);
+            //if (!result.isSuccess()) {
+            //    return result;
+            //}
             // getNextState不能在prepare前，因为有的nextState是根据prepare中的数据转换而来
             String nextState = this.getNextState(context).name();
             // 业务逻辑
@@ -61,12 +61,12 @@ public abstract class AbstractStateProcessor<T, C> implements StateProcessor<T, 
             }
 
             // 在action和save之间执行插件逻辑
-            PluginHandlerable pluginHandlerable = this.getPluginHandlerable(context);
-            result = this.pluginHandlerExecutor.parallelExecutor(
-                    pluginHandlerable.getAsyncPluginHandler(), context);
-            if (!result.isSuccess()) {
-                return result;
-            }
+            //PluginHandlerable pluginHandlerable = this.getPluginHandlerable(context);
+            //result = this.pluginHandlerExecutor.parallelExecutor(
+            //        pluginHandlerable.getAsyncPluginHandler(), context);
+            //if (!result.isSuccess()) {
+            //    return result;
+            //}
 
             // 持久化
             result = this.save(nextState, context);

@@ -1,6 +1,6 @@
 package com.lsd.stateMachine.engine;
 
-import com.lsd.stateMachine.dto.FsmOrder;
+import com.lsd.stateMachine.pojo.FsmOrder;
 import com.lsd.stateMachine.event.OrderStateEvent;
 import com.lsd.stateMachine.vo.ServiceResult;
 

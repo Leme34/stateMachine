@@ -41,7 +41,11 @@ public class CheckerExecutor<T, C> {
                 }
             }
         }
-        return new ServiceResult<>();
+        ServiceResult result = new ServiceResult();
+        result.setContext(context);
+        result.setMsg("success");
+        result.setSuccess(true);
+        return result;
     }
 
     /**

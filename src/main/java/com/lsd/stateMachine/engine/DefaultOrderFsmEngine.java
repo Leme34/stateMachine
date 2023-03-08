@@ -1,6 +1,6 @@
 package com.lsd.stateMachine.engine;
 
-import com.lsd.stateMachine.dto.FsmOrder;
+import com.lsd.stateMachine.pojo.FsmOrder;
 import com.lsd.stateMachine.context.StateContext;
 import com.lsd.stateMachine.enums.ErrorCodeEnum;
 import com.lsd.stateMachine.event.OrderStateEvent;

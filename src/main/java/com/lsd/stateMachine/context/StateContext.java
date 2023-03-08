@@ -1,6 +1,6 @@
 package com.lsd.stateMachine.context;
 
-import com.lsd.stateMachine.dto.FsmOrder;
+import com.lsd.stateMachine.pojo.FsmOrder;
 import com.lsd.stateMachine.event.OrderStateEvent;
 import lombok.Data;
 import lombok.NoArgsConstructor;

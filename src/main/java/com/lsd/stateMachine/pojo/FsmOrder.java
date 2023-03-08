@@ -1,4 +1,4 @@
-package com.lsd.stateMachine.dto;
+package com.lsd.stateMachine.pojo;
 
 /**
  * 状态机引擎所需的订单信息基类信息

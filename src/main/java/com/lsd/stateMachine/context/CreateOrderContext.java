@@ -1,23 +1,16 @@
 package com.lsd.stateMachine.context;
 
-import com.lsd.stateMachine.dto.FsmOrder;
-import com.lsd.stateMachine.event.OrderStateEvent;
-import com.lsd.stateMachine.pojo.OrderInfo;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * Created by lsd
  * 2021-05-10 16:55
  */
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class CreateOrderContext<T> extends StateContext<T> {
-    private String estimatePriceInfo;
-    private OrderInfo orderInfo;
-
-    public CreateOrderContext(OrderStateEvent orderStateEvent, FsmOrder fsmOrder) {
-        super(orderStateEvent, fsmOrder);
-    }
-
+public class CreateOrderContext<T> {
+    private T estimatePriceInfo; //促销信息
 }
